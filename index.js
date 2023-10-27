@@ -16,6 +16,8 @@ client.on('messageCreate', async message => {
     await message.author.send('Please provide your email and password separated by a space:');
     const filter = m => m.content.includes('@');
     const response = (await message.author.dmChannel.awaitMessages({ filter, max: 1, time: 60_000, errors: ['time'] })).first().content.split(' ');
+
+    await message.author.send('Credentials received!');
     
     const email = response[0];
     const password = response[1];
@@ -90,7 +92,7 @@ async function getMyCardboardSchecule(token) {
 }
 
 function notifyAll() {
-  const now = Date.now() + 24 * 3600;
+  const now = Date.now();
 
   setTimeout(() => {}, 1800000 - (now % 1800000));
   
